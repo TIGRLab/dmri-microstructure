@@ -1,10 +1,13 @@
+#!/usr/bin/env python
+
 #extraction NODDI images (OD, ISOVF, ICVF) of both GM and WM
-from glob import glob
-import numpy as np
 import os
-import pandas as pd
+from glob import glob
+from pathlib import Path
 
 import nibabel as nib
+import numpy as np
+import pandas as pd
 
 dict_list = []
 subject_list = []
@@ -43,12 +46,11 @@ for index,sub in enumerate(demo_subjects):
 csv_demo["subject_id"]= demo_subjects
 csv_demo= csv_demo[csv_demo.subject_id != ""]#eliminates rows in which subject id is missing
 
-
 #replacing clinical diagnosis value
 csv_demo = csv_demo.replace("No - participant has not received a previous clinical diagnosis of ASD", "False")
 csv_demo= csv_demo.replace("Yes - participant has received a previous clinical diagnosis of ASD", "True")
 
-merged_df = merge(left=csv_demo, right=noddi_df, how='left', left_on='subject_id', right_on='subject_id')
+merged_df = pd.merge(left=csv_demo, right=noddi_df, how='left', left_on='subject_id', right_on='subject_id')
 print(merged_df)
 filepath=Path('/scratch/fogunsanya/dmri-microstructure/TAY_Demo_NODDI_Measures.csv')#merged data final csv
 merged_df.to_csv(filepath)
