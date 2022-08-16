@@ -10,9 +10,12 @@
 #SBATCH --output=fmriprep-func_%j.out
 #SBATCH --error=fmriprep-func_%j.err
 
-STUDY="TAY"
 
-sublist="/scratch/mjoseph/bids/${STUDY}/code/subject_list.txt"
+STUDY="TAY"  ##MODIFY: ENTER NAME OF STUDY##
+
+PROFILE = "mjoseph" ##MODIFY: ENTER NAME OF PROFILE FOR OUTPUT DATA TO GO IN##
+
+sublist="/scratch/${PROFILE}/bids/${STUDY}/code/subject_list.txt" ##MODIFY: ENTER PATH OF SUBJECT LIST IN STUDY##
 
 index() {
    head -n $SLURM_ARRAY_TASK_ID $sublist \
@@ -21,8 +24,8 @@ index() {
 
 BIDS_DIR=/archive/data/${STUDY}/data/bids
 OUT_DIR=/archive/data/${STUDY}/pipelines/in_progress/baseline
-CODE_DIR=/scratch/mjoseph/bids/${STUDY}/code
-TMP_DIR=/scratch/mjoseph/tmp
+CODE_DIR=/scratch/${PROFILE}/bids/${STUDY}/code
+TMP_DIR=/scratch/${PROFILE}/tmp
 WORK_DIR=${TMP_DIR}/${STUDY}/fmriprep
 FS_LICENSE=${TMP_DIR}/freesurfer_license/license.txt
 
