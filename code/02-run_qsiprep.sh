@@ -12,7 +12,9 @@
 
 STUDY="TAY"
 
-sublist="/scratch/mjoseph/bids/${STUDY}/code/subject_list.txt"
+USER="mjoseph" ##MODIFY: ENTER USER DIRECTORY FOR OUTPUT DATA TO GO IN##
+
+sublist="/scratch/mjoseph/bids/TAY/code/subject_list.txt" ##MODIFY: ENTER PATH OF STUDY SUBJECT LIST##
 
 index() {
    head -n $SLURM_ARRAY_TASK_ID $sublist \
@@ -21,8 +23,8 @@ index() {
 
 BIDS_DIR=/archive/data/${STUDY}/data/bids
 OUT_DIR=/archive/data/${STUDY}/pipelines/in_progress/baseline
-CODE_DIR=/scratch/mjoseph/bids/${STUDY}/code
-TMP_DIR=/scratch/mjoseph/tmp
+CODE_DIR=/scratch/${USER}/bids/${STUDY}/code
+TMP_DIR=/scratch/${USER}/tmp
 WORK_DIR=${TMP_DIR}/${STUDY}/qsiprep
 FS_LICENSE=${TMP_DIR}/freesurfer_license/license.txt
 
