@@ -2,7 +2,7 @@
 '''
 Extraction NODDI images (OD, ISOVF, ICVF) of both GM and WM
 Usage:
-    extract_NODDI_indices.py <NODDI_direc> <Output_path> 
+    07-Noddi Data Extraction.py <NODDI_direc> <Output_path> 
     
     Arguments:
     <NODDI_direc>    String of path to directory holding subject folders from NODDI outputs
